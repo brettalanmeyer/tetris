@@ -40,7 +40,7 @@ class Block {
 	moveLeft() {
 		this.x -= 1;
 
-		if (block.x < 0) {
+		if (this.x < 0) {
 			return false;
 		}
 

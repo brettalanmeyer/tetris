@@ -23,6 +23,10 @@ class Tetromino {
 		return this.blocks.length > 0;
 	}
 
+	place() {
+		this.placed = true;
+	}
+
 	clearRow() {
 		for (let i = this.blocks.length - 1; i >= 0; i--) {
 			let block = this.blocks[i];
@@ -33,7 +37,9 @@ class Tetromino {
 		}
 	}
 
-	rotateRight() {}
+	rotateRight() {
+		console.log('rotate what now?');
+	}
 
 	rotateLeft() {}
 
@@ -41,10 +47,7 @@ class Tetromino {
 		let valid = true;
 
 		for(let i in this.blocks) {
-			let block = this.blocks[i];
-			block.x -= 1;
-
-			if (block.x < 0) {
+			if (!this.blocks[i].moveLeft()) {
 				valid = false;
 			}
 		}

@@ -1,12 +1,10 @@
 class Board {
 	constructor() {
-		this.piece = new I();
+		this.piece = this.nextPiece();
 		this.pieces = []
-		this.current = 0;
 	}
 
 	update() {
-		console.log(this.pieces.length);
 		for (let i in this.pieces) {
 			let piece = this.pieces[i];
 			piece.update();
@@ -21,9 +19,7 @@ class Board {
 	}
 
 	nextPiece() {
-		this.current++;
-
-		switch(this.current % 7) {
+		switch(Math.floor(Math.random() * 7)) {
 			case 0:
 				return new I();
 			case 1:
@@ -39,7 +35,6 @@ class Board {
 			case 6:
 				return new Z();
 		}
-
 	}
 
 	rotateRight() {
@@ -51,11 +46,27 @@ class Board {
 	}
 
 	moveLeft() {
-		this.piece.moveLeft();
+		let allowed = true;
+
+		let blockDetected = this.detectBlock((otherBlock, block) => {
+			return otherBlock.y == block.y && otherBlock.x - block.x == -1;
+		});
+
+		if (!blockDetected) {
+			this.piece.moveLeft();
+		}
 	}
 
 	moveRight() {
-		this.piece.moveRight();
+		let allowed = true;
+
+		let blockDetected = this.detectBlock((otherBlock, block) => {
+			return otherBlock.y == block.y && otherBlock.x - block.x == 1;
+		});
+
+		if (!blockDetected) {
+			this.piece.moveRight();
+		}
 	}
 
 	moveUp() {
@@ -63,7 +74,44 @@ class Board {
 	}
 
 	moveDown() {
+		let allowed = true;
+
+
 		this.piece.moveDown();
+
+		let blockDetected = this.detectBlock((otherBlock, block) => {
+			return otherBlock.x == block.x && otherBlock.y - block.y == 1;
+		});
+
+		if (blockDetected) {
+			this.piece.place();
+		}
+	}
+
+	detectBlock(func) {
+		let blocks = this.piece.blocks;
+
+		for (let i in blocks) {
+			let block = blocks[i];
+
+			if (block.y == rows - 1) {
+				return true;
+			}
+
+			for (let j in this.pieces) {
+				let piece = this.pieces[j];
+
+				for (let k in piece.blocks) {
+					let otherBlock = piece.blocks[k];
+
+					if (func(otherBlock, block)) {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
 	}
 
 	clearRow() {
