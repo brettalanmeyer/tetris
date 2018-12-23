@@ -18,7 +18,7 @@ function init() {
 
 function animate() {
 	requestAnimationFrame(animate);
-	
+
 	c.clearRect(0, 0, canvas.width, canvas.height);
 
 	board.update();
@@ -62,7 +62,16 @@ function handleKeydown(event) {
 			break;
 		case 13:
 			board.clearRow();
-			break;			
+			break;
+		case 84:
+			board.increaseDifficulty();
+			break;
+		case 83:
+			board.startGame();
+			break;
+		case 69:
+			board.endGame();
+			break;
 	}
 }
 

@@ -5,7 +5,32 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 	background: #eee;
-	
+}
+
+dl {
+	position: absolute;
+	border: solid 2px #ccc;
+	padding: 6px;
+	font-family: Arial;
+	margin: 4px;
+}
+
+dt {
+	float: left;
+	clear: left;
+	width: 55px;
+	text-align: right;
+	font-weight: bold;
+	color: green;
+}
+
+dt::after {
+	content: ':';
+}
+
+dd {
+	margin: 0 0 0 65px;
+	padding: 0 0 6px 0;
 }
 
 canvas {

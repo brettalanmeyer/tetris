@@ -1,7 +1,21 @@
 class Board {
 	constructor() {
+		this.piece;
+		this.pieces = [];
+		this.difficulty = 1000;
+		this.difficultyTimer = new Timer(() => this.moveDown(), this.difficulty);
+		this.inProgress = false;
+	}
+
+	startGame() {
 		this.piece = this.nextPiece();
-		this.pieces = []
+		this.difficultyTimer.start();
+		this.inProgress = true;
+	}
+
+	endGame() {
+		this.difficultyTimer.stop();
+		this.inProgress = false;
 	}
 
 	update() {
@@ -10,12 +24,19 @@ class Board {
 			piece.update();
 		}
 
-		this.piece.update();
+		if (this.piece) {
+			this.piece.update();
 
-		if (this.piece.placed) {
-			this.pieces.push(this.piece);
-			this.piece = this.nextPiece();
+			if (this.piece.placed) {
+				this.pieces.push(this.piece);
+				this.piece = this.nextPiece();
+			}
 		}
+	}
+
+	increaseDifficulty() {
+		this.difficulty -= 50;
+		this.difficultyTimer.reset(this.difficulty);
 	}
 
 	nextPiece() {
@@ -38,15 +59,19 @@ class Board {
 	}
 
 	rotateRight() {
+		if (!this.inProgress) return;
+
 		this.piece.rotateRight();
 	}
 
 	rotateLeft() {
+		if (!this.inProgress) return;
+
 		this.piece.rotateLeft();
 	}
 
 	moveLeft() {
-		let allowed = true;
+		if (!this.inProgress) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.y == block.y && otherBlock.x - block.x == -1;
@@ -58,7 +83,7 @@ class Board {
 	}
 
 	moveRight() {
-		let allowed = true;
+		if (!this.inProgress) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.y == block.y && otherBlock.x - block.x == 1;
@@ -70,14 +95,13 @@ class Board {
 	}
 
 	moveUp() {
+		if (!this.inProgress) return;
+
 		this.piece.moveUp();
 	}
 
 	moveDown() {
-		let allowed = true;
-
-
-		this.piece.moveDown();
+		if (!this.inProgress) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.x == block.x && otherBlock.y - block.y == 1;
@@ -85,7 +109,11 @@ class Board {
 
 		if (blockDetected) {
 			this.piece.place();
+		} else {
+			this.piece.moveDown();
 		}
+
+		this.difficultyTimer.reset();
 	}
 
 	detectBlock(func) {
@@ -118,7 +146,7 @@ class Board {
 		for (let i = this.pieces.length - 1; i >= 0; i--) {
 			let piece = this.pieces[i];
 			piece.clearRow();
-			
+
 			if (!piece.hasBlocks()) {
 				this.pieces.splice(i , 1);
 			}
