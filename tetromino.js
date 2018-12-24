@@ -1,9 +1,11 @@
 class Tetromino {
 
-	constructor() {
+	constructor(data) {
 		this.color = '#f00';
 		this.blocks = [];
 		this.placed = false;
+		this.data = data;
+		this.ctx = this.data.ctx;
 	}
 
 	update() {
@@ -11,7 +13,7 @@ class Tetromino {
 	}
 
 	draw() {
-		c.beginPath();
+		this.ctx.beginPath();
 
 		for(let i in this.blocks) {
 			let block = this.blocks[i];
@@ -31,17 +33,19 @@ class Tetromino {
 		for (let i = this.blocks.length - 1; i >= 0; i--) {
 			let block = this.blocks[i];
 
-			if (block.y == rows - 1) {
+			if (block.y == this.rows - 1) {
 				this.blocks.splice(i, 1);
 			}
 		}
 	}
 
 	rotateRight() {
-		console.log('rotate what now?');
+		console.log('rotate right');
 	}
 
-	rotateLeft() {}
+	rotateLeft() {
+		console.log('rotate left');
+	}
 
 	moveLeft() {
 		let valid = true;

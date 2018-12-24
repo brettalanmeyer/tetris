@@ -7,48 +7,24 @@
 	</head>
 	<body>
 
-		<dl>
-			<dt>&larr;</dt>
-			<dd>move left</dd>
-
-			<dt>&rarr;</dt>
-			<dd>move right</dd>
-
-			<dt>&darr;</dt>
-			<dd>move down</dd>
-
-			<dt>space</dt>
-			<dd>drop</dd>
-
-			<dt>??</dt>
-			<dd>rotate right</dd>
-
-			<dt>??</dt>
-			<dd>rotate left</dd>
-
-			<dt>enter</dt>
-			<dd>clear row</dd>
-
-			<dt>i</dt>
-			<dd>increase timer</dd>
-
-			<dt>o</dt>
-			<dd>decrease timer</dd>
-
-			<dt>p</dt>
-			<dd>pause timer</dd>
-
-			<dt>s</dt>
-			<dd>start game</dd>
-
-			<dt>e</dt>
-			<dd>end game</dd>
-		</dl>
-
-		<canvas id="c"></canvas>
+		<div class="column">
+			<canvas id="type" class="type"></canvas>
+			<canvas id="statistics" class="statistics"></canvas>
+		</div>
+		<div class="column">
+			<canvas id="lines" class="lines"></canvas>
+			<canvas id="board" class="board"></canvas>
+		</div>
+		<div class="column">
+			<canvas id="score" class="score"></canvas>
+			<canvas id="next" class="next"></canvas>
+			<canvas id="level" class="level"></canvas>
+		</div>
 
 		<script type="text/javascript" src="timer.js"></script>
 		<script type="text/javascript" src="keys.js"></script>
+		<script type="text/javascript" src="game.js"></script>
+		<script type="text/javascript" src="canvas.js"></script>
 		<script type="text/javascript" src="board.js"></script>
 		<script type="text/javascript" src="tetromino.js"></script>
 		<script type="text/javascript" src="pieces.js"></script>

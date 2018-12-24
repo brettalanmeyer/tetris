@@ -4,37 +4,44 @@ html, body {
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background: #eee;
-}
-
-dl {
-	position: absolute;
-	border: solid 2px #ccc;
-	padding: 6px;
-	font-family: Arial;
-	margin: 4px;
-}
-
-dt {
-	float: left;
-	clear: left;
-	width: 55px;
-	text-align: right;
-	font-weight: bold;
-	color: green;
-}
-
-dt::after {
-	content: ':';
-}
-
-dd {
-	margin: 0 0 0 65px;
-	padding: 0 0 6px 0;
 }
 
 canvas {
 	display: block;
-	margin: auto;
-	background: #fff;
+	box-shadow: inset 0 0 10px #000;
+	width: 100%;
+}
+
+.column {
+	width: 33.33%;
+	height: 100%;
+	float: left;
+}
+
+.type {
+	height: 25%;
+}
+
+.statistics {
+	height: 75%;
+}
+
+.lines {
+	height: 10%;
+}
+
+.board {
+	height: 90%
+}
+
+.score {
+	height: 33%;
+}
+
+.next {
+	height: 34%;
+}
+
+.level {
+	height: 33%;
 }

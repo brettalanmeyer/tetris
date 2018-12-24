@@ -1,10 +1,20 @@
-class Board {
+class Board extends Canvas {
+
 	constructor() {
+		super('board');
+
 		this.piece;
 		this.pieces = [];
 		this.difficulty = 1000;
 		this.difficultyTimer = new Timer(() => this.moveDown(), this.difficulty);
 		this.inProgress = false;
+
+		this.data = {
+			canvas: this.canvas,
+			ctx: this.ctx,
+			columns: 10,
+			rows: 20,
+		}
 	}
 
 	startGame() {
@@ -51,19 +61,19 @@ class Board {
 	nextPiece() {
 		switch(Math.floor(Math.random() * 7)) {
 			case 0:
-				return new I();
+				return new I(this.data);
 			case 1:
-				return new J();
+				return new J(this.data);
 			case 2:
-				return new L();
+				return new L(this.data);
 			case 3:
-				return new O();
+				return new O(this.data);
 			case 4:
-				return new S();
+				return new S(this.data);
 			case 5:
-				return new T();
+				return new T(this.data);
 			case 6:
-				return new Z();
+				return new Z(this.data);
 		}
 	}
 
@@ -139,7 +149,7 @@ class Board {
 		for (let i in blocks) {
 			let block = blocks[i];
 
-			if (block.y == rows - 1) {
+			if (block.y == this.rows - 1) {
 				return true;
 			}
 

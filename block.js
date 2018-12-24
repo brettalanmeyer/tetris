@@ -1,5 +1,9 @@
 class Block {
-	constructor(x, y) {
+	constructor(data, x, y) {
+		this.canvas = data.canvas;
+		this.ctx = data.ctx;
+		this.columns = data.columns;
+		this.rows = data.rows;
 		this.x = x;
 		this.y = y;
 	}
@@ -14,11 +18,11 @@ class Block {
 		let w = this.width();
 		let h = this.height();
 
-		c.fillStyle = '#000';
-		c.fillRect(x, y, w, h);
+		this.ctx.fillStyle = '#000';
+		this.ctx.fillRect(x, y, w, h);
 
-		c.fillStyle = color;
-		c.fillRect(x + 0.5, y + 0.5, w - 1, h - 1);
+		this.ctx.fillStyle = color;
+		this.ctx.fillRect(x + 0.5, y + 0.5, w - 1, h - 1);
 	}
 
 	top(num) {
@@ -30,11 +34,11 @@ class Block {
 	}
 
 	width() {
-		return canvas.width / columns;
+		return this.canvas.width / this.columns;
 	}
 
 	height() {
-		return canvas.height / rows;
+		return this.canvas.height / this.rows;
 	}
 
 	moveLeft() {
@@ -50,7 +54,7 @@ class Block {
 	moveRight() {
 		this.x += 1;
 
-		if (this.x > columns - 1) {
+		if (this.x > this.columns - 1) {
 			return false;
 		}
 
@@ -70,7 +74,7 @@ class Block {
 	moveDown() {
 		this.y += 1;
 
-		if (this.y > rows - 1) {
+		if (this.y > this.rows - 1) {
 			return false;
 		}
 
