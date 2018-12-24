@@ -2,14 +2,13 @@
 <html>
 	<head>
 		<title>Tetris</title>
-		<link rel="stylesheet" type="text/css" href="all.css">
-
+		<link rel="stylesheet" type="text/css" href="assets/stylesheets/all.css">
 	</head>
 	<body>
 
 		<div class="game">
 			<div class="column outer">
-				<canvas id="type" class="type"></canvas>
+				<canvas id="gametype" class="gametype"></canvas>
 				<canvas id="statistics" class="statistics"></canvas>
 			</div>
 			<div class="column inner">
@@ -23,14 +22,20 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" src="helpers/timer.js"></script>
-		<script type="text/javascript" src="helpers/keys.js"></script>
+		<script type="text/javascript" src="tetris/helpers/timer.js"></script>
+		<script type="text/javascript" src="tetris/helpers/keys.js"></script>
 		<script type="text/javascript" src="tetris/game.js"></script>
 		<script type="text/javascript" src="tetris/canvas.js"></script>
 		<script type="text/javascript" src="tetris/board.js"></script>
 		<script type="text/javascript" src="tetris/tetromino.js"></script>
 		<script type="text/javascript" src="tetris/pieces.js"></script>
 		<script type="text/javascript" src="tetris/block.js"></script>
+		<script type="text/javascript" src="tetris/next.js"></script>
+		<script type="text/javascript" src="tetris/level.js"></script>
+		<script type="text/javascript" src="tetris/score.js"></script>
+		<script type="text/javascript" src="tetris/lines.js"></script>
+		<script type="text/javascript" src="tetris/gametype.js"></script>
+		<script type="text/javascript" src="tetris/statistics.js"></script>
 		<script type="text/javascript" src="all.js"></script>
 
 	</body>

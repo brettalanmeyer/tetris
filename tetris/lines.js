@@ -17,7 +17,7 @@ class Lines extends Canvas {
   draw() {
     this.ctx.textBaseline = 'middle';
     this.ctx.textAlign = 'center';
-    this.ctx.font = '30px Arial';
-    this.ctx.fillText('LINES - ' + this.count(this.num), this.x, this.y);
+    this.ctx.font = '20px PressStart2P';
+    this.ctx.fillText('LINES-' + this.count(this.num), this.x, this.y);
   }
 }

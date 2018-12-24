@@ -15,7 +15,7 @@ class Statistics extends Canvas {
 
   draw() {
     this.ctx.textAlign = 'center';
-    this.ctx.font = '30px Arial';
+    this.ctx.font = '20px PressStart2P';
     this.ctx.fillText('STATISTICS', this.x, this.y);
   }
 }

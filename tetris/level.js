@@ -15,7 +15,7 @@ class Level extends Canvas {
 
   draw() {
     this.ctx.textAlign = 'center';
-    this.ctx.font = '30px Arial';
+    this.ctx.font = '20px PressStart2P';
     this.ctx.fillText('LEVEL', this.x, this.y);
   }
 }

@@ -1,11 +1,19 @@
 let board;
-
-const columns = 10;
-const rows = 20
-const ratio = rows / columns;
+let next;
+let level;
+let score;
+let lines;
+let statistics;
+let gametype;
 
 function init() {
 	board = new Board();
+	next = new Next();
+	level = new Level();
+	score = new Score();
+	lines = new Lines();
+	statistics = new Statistics();
+	gametype = new Gametype();
 
 	document.addEventListener('keydown', handleKeydown);
 }
@@ -14,6 +22,12 @@ function animate() {
 	requestAnimationFrame(animate);
 
 	board.render();
+	next.render();
+	level.render();
+	score.render();
+	lines.render();
+	statistics.render();
+	gametype.render();
 }
 
 init();

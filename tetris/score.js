@@ -4,18 +4,23 @@ class Score extends Canvas {
 
     this.x;
     this.y;
+    this.dy;
+    this.top = 0;
+    this.score = 0;
   }
 
   update() {
-    this.x = this.canvas.width / 2;
-    this.y = 30 + this.canvas.height / 20;
+    this.x = this.canvas.width / 20;
+    this.y = 40;
 
 		this.draw();
   }
 
   draw() {
-    this.ctx.textAlign = 'center';
-    this.ctx.font = '30px Arial';
-    this.ctx.fillText('SCORE', this.x, this.y);
+    this.ctx.font = '20px PressStart2P';
+    this.ctx.fillText('TOP', this.x, 40);
+    this.ctx.fillText(this.count(this.top, 6), this.x, 70);
+    this.ctx.fillText('SCORE', this.x, 120);
+    this.ctx.fillText(this.count(this.score, 6), this.x, 150);
   }
 }
