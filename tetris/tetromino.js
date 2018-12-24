@@ -5,8 +5,8 @@ class Tetromino {
 		this.color = '#f00';
 		this.blocks = [];
 		this.placed = false;
-		this.data = data;
-		this.ctx = this.data.ctx;
+		this.ctx = data.ctx;
+		this.rows = data.rows;
 	}
 
 	update() {
