@@ -6,6 +6,8 @@ class Block {
 		this.rows = data.rows;
 		this.x = x;
 		this.y = y;
+		this.offsetX = 0;
+		this.offsetY = 0;
 
 		this.l;
 		this.t;
@@ -14,8 +16,8 @@ class Block {
 	}
 
 	update(color) {
-		this.l = this.left(this.x);
-		this.t = this.top(this.y);
+		this.l = this.left(this.x) + this.offsetX;
+		this.t = this.top(this.y) + this.offsetY;
 		this.w = this.width();
 		this.h = this.height();
 
@@ -28,6 +30,11 @@ class Block {
 
 		this.ctx.fillStyle = color;
 		this.ctx.fillRect(this.l + 0.5, this.t + 0.5, this.w - 1, this.h - 1);
+	}
+
+	setPosition(left, top) {
+		this.offsetX = left;
+		this.offsetY = top;
 	}
 
 	left(num) {

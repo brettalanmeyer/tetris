@@ -1,6 +1,7 @@
 class Tetromino {
 
-	constructor(data) {
+	constructor(name, data) {
+		this.name = name;
 		this.color = '#f00';
 		this.blocks = [];
 		this.placed = false;
@@ -21,6 +22,64 @@ class Tetromino {
 		}
 	}
 
+	getWidth() {
+		let minX;
+		let maxX;
+		let width;
+
+		for(let i in this.blocks) {
+			let block = this.blocks[i];
+
+			if (minX == null) {
+				minX = block.x;
+			}
+			if (maxX == null) {
+				maxX = block.x;
+			}
+
+			if (block.x < minX) {
+				minX = block.x;
+			}
+			if (block.x > maxX) {
+				maxX = block.x;
+			}
+
+			width = block.width();
+		}
+
+		let dX = maxX - minX + 1;
+		return dX * width;
+	}
+
+	getHeight() {
+		let minY;
+		let maxY;
+		let height;
+
+		for(let i in this.blocks) {
+			let block = this.blocks[i];
+
+			if (minY == null) {
+				minY = block.y;
+			}
+			if (maxY == null) {
+				maxY = block.y;
+			}
+
+			if (block.y < minY) {
+				minY = block.x;
+			}
+			if (block.y > maxY) {
+				maxY = block.y;
+			}
+
+			height = block.height();
+		}
+
+		let dY = maxY - minY + 1;
+		return dY * height;
+	}
+
 	hasBlocks() {
 		return this.blocks.length > 0;
 	}
@@ -36,6 +95,12 @@ class Tetromino {
 			if (block.y == this.rows - 1) {
 				this.blocks.splice(i, 1);
 			}
+		}
+	}
+
+	setPosition(x, y) {
+		for(let i in this.blocks) {
+			this.blocks[i].setPosition(x, y);
 		}
 	}
 
