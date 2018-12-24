@@ -5,7 +5,7 @@ const c = canvas.getContext("2d");
 let board;
 
 const columns = 10;
-const rows = 16
+const rows = 20
 const ratio = rows / columns;
 
 function init() {
@@ -42,60 +42,44 @@ function handleResize() {
 
 function handleKeydown(event) {
 	switch(event.keyCode) {
-		case 32:
-			board.rotateRight();
-			break;
-		case 65:
-			board.rotateLeft();
-			break;
-		case 37:
+		// case :
+			// board.rotateRight();
+			// break;
+		// case :
+			// board.rotateLeft();
+			// break;
+		case KEYS.LEFT:
 			board.moveLeft();
 			break;
-		case 39:
+		case KEYS.RIGHT:
 			board.moveRight();
 			break;
-		case 38:
+		case KEYS.UP:
 			board.moveUp();
 			break;
-		case 40:
+		case KEYS.DOWN:
 			board.moveDown();
 			break;
-		case 13:
+		case KEYS.SPACE:
+			board.drop();
+			break;
+		case KEYS.ENTER:
 			board.clearRow();
 			break;
-		case 84:
-			board.increaseDifficulty();
-			break;
-		case 83:
+		case KEYS.S:
 			board.startGame();
 			break;
-		case 69:
+		case KEYS.E:
 			board.endGame();
 			break;
-	}
+		case KEYS.I:
+			board.increaseTimer();
+			break;
+		case KEYS.O:
+			board.decreaseTimer();
+			break;
+		case KEYS.P:
+			board.pause();
+			break;
+		}
 }
-
-// function rotateRight() {
-// 	piece.rotateRight();
-// 	console.log('rotateRight');
-// }
-
-// function rotateLeft() {
-// 	piece.rotateLeft();
-// 	console.log('rotateLeft');
-// }
-
-// function moveLeft() {
-// 	piece.moveLeft();
-// 	console.log('moveLeft');
-// }
-
-// function moveRight() {
-// 	piece.moveRight();
-// 	console.log('moveRight');
-// }
-
-// function moveUp() {
-// 	piece.moveUp();
-// 	console.log('moveDown');
-// }

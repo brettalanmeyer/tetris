@@ -18,6 +18,20 @@ class Board {
 		this.inProgress = false;
 	}
 
+	increaseTimer() {
+		this.difficulty -= 50;
+		this.difficultyTimer.reset(this.difficulty);
+	}
+
+	decreaseTimer() {
+		this.difficulty += 50;
+		this.difficultyTimer.reset(this.difficulty);
+	}
+
+	pause() {
+		this.inProgress = !this.difficultyTimer.toggle();
+	}
+
 	update() {
 		for (let i in this.pieces) {
 			let piece = this.pieces[i];
@@ -32,11 +46,6 @@ class Board {
 				this.piece = this.nextPiece();
 			}
 		}
-	}
-
-	increaseDifficulty() {
-		this.difficulty -= 50;
-		this.difficultyTimer.reset(this.difficulty);
 	}
 
 	nextPiece() {
@@ -55,6 +64,14 @@ class Board {
 				return new T();
 			case 6:
 				return new Z();
+		}
+	}
+
+	drop() {
+		if (!this.inProgress) return;
+
+		while (!this.piece.placed) {
+			this.moveDown();
 		}
 	}
 
