@@ -18,27 +18,37 @@ class Board extends Canvas {
 	}
 
 	startGame() {
+		this.log('startGame');
+
 		this.piece = this.nextPiece();
 		this.difficultyTimer.start();
 		this.isPaused = false;
 	}
 
 	endGame() {
+		this.log('endGame');
+
 		this.difficultyTimer.stop();
 		this.isPaused = true;
 	}
 
 	increaseTimer() {
+		this.log('increaseTimer');
+
 		this.difficulty -= 50;
 		this.difficultyTimer.reset(this.difficulty);
 	}
 
 	decreaseTimer() {
+		this.log('decreaseTimer');
+
 		this.difficulty += 50;
 		this.difficultyTimer.reset(this.difficulty);
 	}
 
 	pause() {
+		console.this.log('pause');
+
 		this.isPaused = this.difficultyTimer.toggle();
 	}
 
@@ -59,6 +69,8 @@ class Board extends Canvas {
 	}
 
 	nextPiece() {
+		this.log('nextPiece');
+
 		switch(Math.floor(Math.random() * 7)) {
 			case 0:
 				return new I(this.data);
@@ -78,6 +90,8 @@ class Board extends Canvas {
 	}
 
 	drop() {
+		this.log('drop');
+
 		if (this.isPaused) return;
 
 		while (!this.piece.placed) {
@@ -86,18 +100,24 @@ class Board extends Canvas {
 	}
 
 	rotateRight() {
+		this.log('rotateRight');
+
 		if (this.isPaused) return;
 
 		this.piece.rotateRight();
 	}
 
 	rotateLeft() {
+		this.log('rotateLeft');
+
 		if (this.isPaused) return;
 
 		this.piece.rotateLeft();
 	}
 
 	moveLeft() {
+		this.log('moveLeft');
+
 		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
@@ -110,6 +130,8 @@ class Board extends Canvas {
 	}
 
 	moveRight() {
+		this.log('moveRight');
+
 		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
@@ -122,12 +144,16 @@ class Board extends Canvas {
 	}
 
 	moveUp() {
+		this.log('moveUp');
+
 		if (this.isPaused) return;
 
 		this.piece.moveUp();
 	}
 
 	moveDown() {
+		this.log('moveDown');
+
 		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
@@ -170,6 +196,8 @@ class Board extends Canvas {
 	}
 
 	clearRow() {
+		this.log('clearRow');
+
 		for (let i = this.pieces.length - 1; i >= 0; i--) {
 			let piece = this.pieces[i];
 			piece.clearRow();

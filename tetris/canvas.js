@@ -3,6 +3,7 @@ class Canvas {
   constructor(id) {
     this.canvas = document.getElementById(id);
     this.ctx = this.canvas.getContext('2d');
+    this.isInDebugMode = false;
 
     this.resize();
 
@@ -28,5 +29,15 @@ class Canvas {
 
   count(value, pad = 3) {
     return value.toString().padStart(pad, 0)
+  }
+
+  setDebugMode(isInDebugMode) {
+    this.isInDebugMode = isInDebugMode;
+  }
+
+  log() {
+    if (this.isInDebugMode) {
+      console.log.apply(null, arguments);
+    }
   }
 }

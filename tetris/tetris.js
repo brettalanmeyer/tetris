@@ -9,6 +9,7 @@ class Tetris {
     this.board = new Board();
 
     this.isPaused = false;
+    this.isInDebugMode = false;
 
     this.addEvents();
     this.animate();
@@ -40,13 +41,20 @@ class Tetris {
     }
   }
 
-  debugMode() {
+  toggleDebugMode() {
+    this.isInDebugMode = !this.isInDebugMode;
+    console.log('toggleDebugMode:', this.isInDebugMode);
 
+    this.next.setDebugMode(this.isInDebugMode);
+    this.level.setDebugMode(this.isInDebugMode);
+    this.score.setDebugMode(this.isInDebugMode);
+    this.lines.setDebugMode(this.isInDebugMode);
+    this.statistics.setDebugMode(this.isInDebugMode);
+    this.gametype.setDebugMode(this.isInDebugMode);
+    this.board.setDebugMode(this.isInDebugMode);
   }
 
   handleKeydown(event) {
-    console.log(event.keyCode);
-
     switch(event.keyCode) {
       case KEYS.UP:
         this.board.moveUp();
@@ -72,7 +80,7 @@ class Tetris {
       case KEYS.D:
         this.board.rotateLeft();
         break;
-        case KEYS.S:
+      case KEYS.S:
         this.board.startGame();
         break;
       case KEYS.E:
@@ -91,7 +99,7 @@ class Tetris {
         this.board.decreaseTimer();
         break;
       case KEYS.Q:
-        this.debugMode();
+        this.toggleDebugMode();
         break;
       }
     }
