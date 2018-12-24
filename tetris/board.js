@@ -1,6 +1,6 @@
 class Board extends Canvas {
 
-	constructor() {
+	constructor(next) {
 		super('board');
 
 		this.piece;
@@ -9,18 +9,15 @@ class Board extends Canvas {
 		this.difficultyTimer = new Timer(() => this.moveDown(), this.difficulty);
 		this.isPaused = false;
 
-		this.data = {
-			canvas: this.canvas,
-			ctx: this.ctx,
-			columns: 10,
-			rows: 20,
-		}
+		this.next = next;
 	}
 
 	startGame() {
 		this.log('startGame');
 
-		this.piece = this.nextPiece();
+		let pieceType = this.next.nextPieceType();
+		this.piece = new pieceType(this.data);
+
 		this.difficultyTimer.start();
 		this.isPaused = false;
 	}
@@ -63,29 +60,10 @@ class Board extends Canvas {
 
 			if (this.piece.placed) {
 				this.pieces.push(this.piece);
-				this.piece = this.nextPiece();
+
+				let pieceType = this.next.nextPieceType();
+				this.piece = new pieceType(this.data);
 			}
-		}
-	}
-
-	nextPiece() {
-		this.log('nextPiece');
-
-		switch(Math.floor(Math.random() * 7)) {
-			case 0:
-				return new I(this.data);
-			case 1:
-				return new J(this.data);
-			case 2:
-				return new L(this.data);
-			case 3:
-				return new O(this.data);
-			case 4:
-				return new S(this.data);
-			case 5:
-				return new T(this.data);
-			case 6:
-				return new Z(this.data);
 		}
 	}
 

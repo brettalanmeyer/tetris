@@ -5,13 +5,7 @@ class Statistics extends Canvas {
     this.x;
     this.y;
 
-    this.data = {
-			canvas: this.canvas,
-			ctx: this.ctx,
-			columns: 10,
-      rows: 20,
-      count: this.count,
-		}
+    this.data.count = this.count;
 
     let i = 0;
     this.items = [

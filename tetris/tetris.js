@@ -6,7 +6,7 @@ class Tetris {
     this.lines = new Lines();
     this.statistics = new Statistics();
     this.gametype = new Gametype();
-    this.board = new Board();
+    this.board = new Board(this.next);
 
     this.isPaused = false;
     this.isInDebugMode = false;

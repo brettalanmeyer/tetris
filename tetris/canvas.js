@@ -5,6 +5,13 @@ class Canvas {
     this.ctx = this.canvas.getContext('2d');
     this.isInDebugMode = false;
 
+    this.data = {
+			canvas: this.canvas,
+			ctx: this.ctx,
+			columns: 10,
+			rows: 20,
+		}
+
     this.resize();
 
     window.addEventListener('resize', () => this.resize());
