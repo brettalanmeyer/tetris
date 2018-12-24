@@ -1,5 +1,8 @@
-function init() {
-	let game = new Game();
-}
+const gear = document.getElementById('gear');
+const settings = document.getElementById('settings');
 
-init();
+gear.addEventListener('click', function() {
+	settings.classList.toggle('open');
+});
+
+new Game();
