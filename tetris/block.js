@@ -46,11 +46,11 @@ class Block {
 	}
 
 	width() {
-		return this.canvas.width / this.columns;
+		return 36;
 	}
 
 	height() {
-		return this.canvas.height / this.rows;
+		return 36;
 	}
 
 	moveLeft() {

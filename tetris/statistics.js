@@ -23,7 +23,7 @@ class Statistics extends Canvas {
     this.x = this.canvas.width / 2;
     this.y = this.canvas.height / 20;
 
-    let pieceY = this.canvas.height / 8;
+    let pieceY = 60;
 
     for (let i in this.items) {
       let item = this.items[i];
@@ -31,7 +31,7 @@ class Statistics extends Canvas {
       item.pieceY = pieceY;
       item.textY = pieceY + item.piece.getHeight() / 2;
 
-      pieceY += item.piece.getHeight() + this.canvas.height / 50;
+      pieceY += item.piece.getHeight() + 10;
     }
 
 		this.draw();
@@ -58,9 +58,9 @@ class Item {
 
     this.num = 0;
 
-    this.pieceX = (data.canvas.width - this.piece.getWidth()) / 2 - (data.canvas.width / 6);
+    this.pieceX = (data.canvas.width - this.piece.getWidth()) / 2 - 50;
     this.pieceY = 0;
-    this.textX = data.canvas.width * .7;
+    this.textX = data.canvas.width * .75;
     this.textY;
   }
 

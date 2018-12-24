@@ -108,39 +108,40 @@ canvas {
 }
 
 .column {
-	width: 30%;
-	height: 100%;
 	float: left;
 }
 
-.column.inner {
-	width: 40%;
-}
-
 .gametype {
-	height: 25%;
+	width: 270px;
+	height: 200px;
 }
 
 .statistics {
-	height: 75%;
+	width: 270px;
+	height: 600px;
 }
 
 .lines {
-	height: 10%;
+	width: 360px;
+	height: 80px;
 }
 
 .board {
-	height: 90%
+	width: 360px;
+	height: 720px;
 }
 
 .score {
-	height: 33%;
+	width: 270px;
+	height: 300px;
 }
 
 .next {
-	height: 34%;
+	width: 270px;
+	height: 250px;
 }
 
 .level {
-	height: 33%;
+	width: 270px;
+	height: 250px;
 }
