@@ -1,4 +1,4 @@
-class Game {
+class Tetris {
   constructor() {
     this.next = new Next();
     this.level = new Level();

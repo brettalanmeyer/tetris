@@ -5,4 +5,4 @@ gear.addEventListener('click', function() {
 	settings.classList.toggle('open');
 });
 
-new Game();
+new Tetris();
