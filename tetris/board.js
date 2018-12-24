@@ -7,7 +7,7 @@ class Board extends Canvas {
 		this.pieces = [];
 		this.difficulty = 1000;
 		this.difficultyTimer = new Timer(() => this.moveDown(), this.difficulty);
-		this.inProgress = false;
+		this.isPaused = false;
 
 		this.data = {
 			canvas: this.canvas,
@@ -20,12 +20,12 @@ class Board extends Canvas {
 	startGame() {
 		this.piece = this.nextPiece();
 		this.difficultyTimer.start();
-		this.inProgress = true;
+		this.isPaused = false;
 	}
 
 	endGame() {
 		this.difficultyTimer.stop();
-		this.inProgress = false;
+		this.isPaused = true;
 	}
 
 	increaseTimer() {
@@ -39,7 +39,7 @@ class Board extends Canvas {
 	}
 
 	pause() {
-		this.inProgress = !this.difficultyTimer.toggle();
+		this.isPaused = this.difficultyTimer.toggle();
 	}
 
 	update() {
@@ -78,7 +78,7 @@ class Board extends Canvas {
 	}
 
 	drop() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		while (!this.piece.placed) {
 			this.moveDown();
@@ -86,19 +86,19 @@ class Board extends Canvas {
 	}
 
 	rotateRight() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		this.piece.rotateRight();
 	}
 
 	rotateLeft() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		this.piece.rotateLeft();
 	}
 
 	moveLeft() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.y == block.y && otherBlock.x - block.x == -1;
@@ -110,7 +110,7 @@ class Board extends Canvas {
 	}
 
 	moveRight() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.y == block.y && otherBlock.x - block.x == 1;
@@ -122,13 +122,13 @@ class Board extends Canvas {
 	}
 
 	moveUp() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		this.piece.moveUp();
 	}
 
 	moveDown() {
-		if (!this.inProgress) return;
+		if (this.isPaused) return;
 
 		let blockDetected = this.detectBlock((otherBlock, block) => {
 			return otherBlock.x == block.x && otherBlock.y - block.y == 1;
