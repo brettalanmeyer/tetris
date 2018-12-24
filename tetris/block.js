@@ -6,30 +6,35 @@ class Block {
 		this.rows = data.rows;
 		this.x = x;
 		this.y = y;
+
+		this.l;
+		this.t;
+		this.w;
+		this.h;
 	}
 
 	update(color) {
+		this.l = this.left(this.x);
+		this.t = this.top(this.y);
+		this.w = this.width();
+		this.h = this.height();
+
 		this.draw(color);
 	}
 
 	draw(color) {
-		let x = this.top(this.x);
-		let y = this.left(this.y);
-		let w = this.width();
-		let h = this.height();
-
 		this.ctx.fillStyle = '#000';
-		this.ctx.fillRect(x, y, w, h);
+		this.ctx.fillRect(this.l, this.t, this.w, this.h);
 
 		this.ctx.fillStyle = color;
-		this.ctx.fillRect(x + 0.5, y + 0.5, w - 1, h - 1);
-	}
-
-	top(num) {
-		return num * this.width();
+		this.ctx.fillRect(this.l + 0.5, this.t + 0.5, this.w - 1, this.h - 1);
 	}
 
 	left(num) {
+		return num * this.width();
+	}
+
+	top(num) {
 		return num * this.height();
 	}
 

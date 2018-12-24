@@ -20,6 +20,13 @@ class Canvas {
     this.update();
   }
 
-  update() {}
+  update() {
+    this.draw();
+  }
 
+  draw() {}
+
+  count(value, pad = 3) {
+    return value.toString().padStart(pad, 0)
+  }
 }
