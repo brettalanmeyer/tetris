@@ -7,13 +7,13 @@ class Statistics extends Canvas {
 
     let i = 0;
     this.items = [
-      new Item(I, this.canvas, this.count),
-      new Item(J, this.canvas, this.count),
-      new Item(L, this.canvas, this.count),
-      new Item(O, this.canvas, this.count),
-      new Item(S, this.canvas, this.count),
-      new Item(T, this.canvas, this.count),
-      new Item(Z, this.canvas, this.count),
+      new Item(I, this, this.font()),
+      new Item(J, this, this.font()),
+      new Item(L, this, this.font()),
+      new Item(O, this, this.font()),
+      new Item(S, this, this.font()),
+      new Item(T, this, this.font()),
+      new Item(Z, this, this.font()),
     ];
   }
 
@@ -35,17 +35,17 @@ class Statistics extends Canvas {
 
   update() {
     this.x = this.width() / 2;
-    this.y = this.canvas.height / 24;
+    this.y = this.height() / 24;
 
-    let pieceY = 60;
+    let tetrominoY = 60;
 
     for (let i in this.items) {
       let item = this.items[i];
 
-      item.pieceY = pieceY;
-      item.textY = pieceY + item.piece.getHeight() / 2;
+      item.tetrominoY = tetrominoY;
+      item.textY = tetrominoY + item.tetromino.getHeight() / 2;
 
-      pieceY += item.piece.getHeight() + 10;
+      tetrominoY += item.tetromino.getHeight() + 10;
     }
 
 		this.draw();
@@ -58,37 +58,39 @@ class Statistics extends Canvas {
     this.ctx.font = this.font('PressStart2P');
     this.ctx.fillText('STATISTICS', this.x, this.y);
 
-    // for (let i in this.items) {
-    //   this.items[i].update();
-    // }
+    for (let i in this.items) {
+      this.items[i].update();
+    }
   }
 }
 
 class Item {
-  constructor(piece, canvas, count) {
-    this.piece = new piece(canvas);
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.count = count;
+  constructor(tetromino, container, font) {
+    this.container = container;
+    this.canvas = this.container.canvas;
+    this.ctx = this.canvas.getContext('2d');
+    this.tetromino = new tetromino(container);
+    this.count = this.container.count;
+    this.font = font;
 
     this.num = 0;
 
-    this.pieceX = (canvas.width - this.piece.getWidth()) / 2 - 50;
-    this.pieceY = 0;
-    this.textX = canvas.width * .75;
+    this.tetrominoX = 50;
+    this.tetrominoY = 0;
+    this.textX = 200;
     this.textY;
   }
 
   update() {
-    this.piece.setPosition(this.pieceX, this.pieceY);
-    this.piece.update();
+    this.tetromino.setPosition(this.tetrominoX, this.tetrominoY);
+    this.tetromino.update();
     this.draw();
   }
 
   draw() {
     this.ctx.textBaseline = 'middle';
     this.ctx.fillStyle = '#000';
-    this.ctx.font = this.font();
+    this.ctx.font = this.font;
     this.ctx.fillText(this.count(this.num), this.textX, this.textY);
   }
 }

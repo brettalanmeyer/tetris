@@ -1,10 +1,8 @@
 class Block {
-	constructor(canvas, x, y) {
-		this.canvas = canvas;
-		this.ctx = canvas.getContext('2d');
-		// this.columns = data.columns;
-		// this.rows = data.rows;
-
+	constructor(container, x, y) {
+		this.container = container;
+		this.canvas = container.canvas;
+		this.ctx = this.canvas.getContext('2d');
 
 		this.columns = 10;
 		this.rows = 20;
@@ -51,11 +49,11 @@ class Block {
 	}
 
 	width() {
-		return 36;
+		return this.container.width() / this.columns;
 	}
 
 	height() {
-		return 36;
+		return this.container.height() / this.rows;
 	}
 
 	moveLeft() {

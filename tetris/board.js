@@ -3,8 +3,8 @@ class Board extends Canvas {
 	constructor(canvas, next) {
 		super(canvas);
 
-		this.piece;
-		this.pieces = [];
+		this.tetromino;
+		this.tetrominos = [];
 		this.difficulty = 1000;
 		this.difficultyTimer = new Timer(() => this.moveDown(), this.difficulty);
 		this.isPaused = false;
@@ -31,8 +31,8 @@ class Board extends Canvas {
 	startGame() {
 		this.log('startGame');
 
-		let pieceType = this.next.nextPieceType();
-		this.piece = new pieceType(this.data);
+		let tetrominoType = this.next.nextTetrominoType();
+		this.tetromino = new tetrominoType(this);
 
 		this.difficultyTimer.start();
 		this.isPaused = false;
@@ -66,19 +66,19 @@ class Board extends Canvas {
 	}
 
 	update() {
-		for (let i in this.pieces) {
-			let piece = this.pieces[i];
-			piece.update();
+		for (let i in this.tetrominos) {
+			let tetromino = this.tetrominos[i];
+			tetromino.update();
 		}
 
-		if (this.piece) {
-			this.piece.update();
+		if (this.tetromino) {
+			this.tetromino.update();
 
-			if (this.piece.placed) {
-				this.pieces.push(this.piece);
+			if (this.tetromino.placed) {
+				this.tetrominos.push(this.tetromino);
 
-				let pieceType = this.next.nextPieceType();
-				this.piece = new pieceType(this.data);
+				let tetrominoType = this.next.nextTetrominoType();
+				this.tetromino = new tetrominoType(this);
 			}
 		}
 	}
@@ -88,7 +88,7 @@ class Board extends Canvas {
 
 		if (this.isPaused) return;
 
-		while (!this.piece.placed) {
+		while (!this.tetromino.placed) {
 			this.moveDown();
 		}
 	}
@@ -98,7 +98,7 @@ class Board extends Canvas {
 
 		if (this.isPaused) return;
 
-		this.piece.rotateRight();
+		this.tetromino.rotateRight();
 	}
 
 	rotateLeft() {
@@ -106,7 +106,7 @@ class Board extends Canvas {
 
 		if (this.isPaused) return;
 
-		this.piece.rotateLeft();
+		this.tetromino.rotateLeft();
 	}
 
 	moveLeft() {
@@ -119,7 +119,7 @@ class Board extends Canvas {
 		});
 
 		if (!blockDetected) {
-			this.piece.moveLeft();
+			this.tetromino.moveLeft();
 		}
 	}
 
@@ -133,7 +133,7 @@ class Board extends Canvas {
 		});
 
 		if (!blockDetected) {
-			this.piece.moveRight();
+			this.tetromino.moveRight();
 		}
 	}
 
@@ -142,7 +142,7 @@ class Board extends Canvas {
 
 		if (this.isPaused) return;
 
-		this.piece.moveUp();
+		this.tetromino.moveUp();
 	}
 
 	moveDown() {
@@ -155,16 +155,16 @@ class Board extends Canvas {
 		});
 
 		if (blockDetected) {
-			this.piece.place();
+			this.tetromino.place();
 		} else {
-			this.piece.moveDown();
+			this.tetromino.moveDown();
 		}
 
 		this.difficultyTimer.reset();
 	}
 
 	detectBlock(func) {
-		let blocks = this.piece.blocks;
+		let blocks = this.tetromino.blocks;
 
 		for (let i in blocks) {
 			let block = blocks[i];
@@ -173,11 +173,11 @@ class Board extends Canvas {
 				return true;
 			}
 
-			for (let j in this.pieces) {
-				let piece = this.pieces[j];
+			for (let j in this.tetrominos) {
+				let tetromino = this.tetrominos[j];
 
-				for (let k in piece.blocks) {
-					let otherBlock = piece.blocks[k];
+				for (let k in tetromino.blocks) {
+					let otherBlock = tetromino.blocks[k];
 
 					if (func(otherBlock, block)) {
 						return true;
@@ -192,15 +192,15 @@ class Board extends Canvas {
 	clearRow() {
 		this.log('clearRow');
 
-		for (let i = this.pieces.length - 1; i >= 0; i--) {
-			let piece = this.pieces[i];
-			piece.clearRow();
+		for (let i = this.tetrominos.length - 1; i >= 0; i--) {
+			let tetromino = this.tetrominos[i];
+			tetromino.clearRow();
 
-			if (!piece.hasBlocks()) {
-				this.pieces.splice(i , 1);
+			if (!tetromino.hasBlocks()) {
+				this.tetrominos.splice(i , 1);
 			}
 
-			piece.moveDown();
+			tetromino.moveDown();
 		}
 	}
 }

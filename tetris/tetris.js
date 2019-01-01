@@ -6,13 +6,13 @@ class Tetris {
     this.gametype = new Gametype(this.canvas);
     this.statistics = new Statistics(this.canvas);
     this.lines = new Lines(this.canvas);
+    this.next = new Next(this.canvas);
     this.board = new Board(this.canvas, this.next);
     this.score = new Score(this.canvas);
-    this.next = new Next(this.canvas);
     this.level = new Level(this.canvas);
 
     this.isPaused = false;
-    // this.isInDebugMode = false;
+    this.isInDebugMode = false;
 
     this.handleResize();
     this.addEvents();
