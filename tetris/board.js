@@ -1,7 +1,7 @@
 class Board extends Canvas {
 
-	constructor(next) {
-		super('board');
+	constructor(canvas, next) {
+		super(canvas);
 
 		this.piece;
 		this.pieces = [];
@@ -11,6 +11,22 @@ class Board extends Canvas {
 
 		this.next = next;
 	}
+
+	offsetX() {
+    return this.canvas.width / 3;
+  }
+
+  offsetY() {
+    return this.canvas.height * 1 / 8;
+  }
+
+  width() {
+    return this.canvas.width * 1 / 3;
+  }
+
+  height() {
+    return this.canvas.height * 7 / 8;
+  }
 
 	startGame() {
 		this.log('startGame');
@@ -44,7 +60,7 @@ class Board extends Canvas {
 	}
 
 	pause() {
-		console.this.log('pause');
+		this.log('pause');
 
 		this.isPaused = this.difficultyTimer.toggle();
 	}

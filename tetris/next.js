@@ -1,32 +1,48 @@
 class Next extends Canvas {
-	constructor() {
-    super('next');
+	constructor(canvas) {
+    super(canvas);
 
     this.textX;
     this.textY;
     this.pieceX;
     this.pieceX;
 
-    this.pieceType = this._nextPieceType();
-    this.piece = new this.pieceType(this.data);
-    this.boardData;
+    // this.pieceType = this._nextPieceType();
+    // this.piece = new this.pieceType(this.canvas);
+    // this.boardData;
+	}
+
+	offsetX() {
+    return this.canvas.width * 2 / 3;
+  }
+
+  offsetY() {
+    return this.canvas.height * 1 / 3;
+  }
+
+  width() {
+    return this.canvas.width * 1 / 3;
+  }
+
+  height() {
+    return this.canvas.height * 1 / 3;
   }
 
   update() {
-    this.textX = this.canvas.width / 2;
-    this.textY = 30 + this.canvas.height / 20;
+    this.textX = this.width() / 2;
+    this.textY = this.canvas.height / 24;
     this.draw();
 
-    this.pieceX = (this.data.canvas.width - this.piece.getWidth()) / 2;
-    this.pieceY = (this.data.canvas.height - this.piece.getHeight()) / 2;
-    this.piece.setPosition(this.pieceX, this.pieceY);
-    this.piece.update();
+    // this.pieceX = (this.canvas.width - this.piece.getWidth()) / 2;
+    // this.pieceY = (this.canvas.height - this.piece.getHeight()) / 2;
+    // this.piece.setPosition(this.pieceX, this.pieceY);
+    // this.piece.update();
   }
 
   draw() {
     this.ctx.fillStyle = '#000';
     this.ctx.textAlign = 'center';
-    this.ctx.font = '20px PressStart2P';
+    this.ctx.font = this.font();
     this.ctx.fillText('NEXT', this.textX, this.textY);
   }
 

@@ -1,12 +1,15 @@
 class Tetromino {
 
-	constructor(name, data) {
+	constructor(name, canvas) {
+		this.canvas = canvas;
+		this.ctx = this.canvas.getContext('2d');
+
 		this.name = name;
 		this.color = '#f00';
 		this.blocks = [];
 		this.placed = false;
-		this.ctx = data.ctx;
-		this.rows = data.rows;
+		// this.rows = data.rows;
+		this.rows = 20;
 	}
 
 	update() {

@@ -1,13 +1,14 @@
 //  # # # #
 class I extends Tetromino {
-	constructor(data) {
-		super('I', data);
+	constructor(canvas) {
+		super('I', canvas);
+
 		this.color = '#0ff';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 1, 0),
-			new Block(data, 2, 0),
-			new Block(data, 3, 0),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 2, 0),
+			new Block(canvas, 3, 0),
 		];
 	}
 }
@@ -15,14 +16,14 @@ class I extends Tetromino {
 //  # # #
 //      #
 class J extends Tetromino {
-	constructor(data) {
-		super('J', data);
+	constructor(canvas) {
+		super('J', canvas);
 		this.color = '#00f';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 1, 0),
-			new Block(data, 2, 0),
-			new Block(data, 2, 1),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 2, 0),
+			new Block(canvas, 2, 1),
 		];
 	}
 }
@@ -30,14 +31,14 @@ class J extends Tetromino {
 //  # # #
 //  #
 class L extends Tetromino {
-	constructor(data) {
-		super('L', data);
+	constructor(canvas) {
+		super('L', canvas);
 		this.color = '#ffa500';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 1, 0),
-			new Block(data, 2, 0),
-			new Block(data, 0, 1),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 2, 0),
+			new Block(canvas, 0, 1),
 		];
 	}
 }
@@ -45,14 +46,14 @@ class L extends Tetromino {
 //  # #
 //  # #
 class O extends Tetromino {
-	constructor(data) {
-		super('O', data);
+	constructor(canvas) {
+		super('O', canvas);
 		this.color = '#ff0';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 0, 1),
-			new Block(data, 1, 0),
-			new Block(data, 1, 1),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 0, 1),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 1, 1),
 		];
 	}
 }
@@ -60,14 +61,14 @@ class O extends Tetromino {
 //    # #
 //  # #
 class S extends Tetromino {
-	constructor(data) {
-		super('S', data);
+	constructor(canvas) {
+		super('S', canvas);
 		this.color = '#0f0';
 		this.blocks = [
-			new Block(data, 1, 0),
-			new Block(data, 2, 0),
-			new Block(data, 0, 1),
-			new Block(data, 1, 1),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 2, 0),
+			new Block(canvas, 0, 1),
+			new Block(canvas, 1, 1),
 		];
 	}
 }
@@ -75,14 +76,14 @@ class S extends Tetromino {
 //  # # #
 //    #
 class T extends Tetromino {
-	constructor(data) {
-		super('T', data);
+	constructor(canvas) {
+		super('T', canvas);
 		this.color = '#551a8b';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 1, 0),
-			new Block(data, 2, 0),
-			new Block(data, 1, 1),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 2, 0),
+			new Block(canvas, 1, 1),
 		];
 	}
 }
@@ -90,14 +91,14 @@ class T extends Tetromino {
 //  # #
 //    # #
 class Z extends Tetromino {
-	constructor(data) {
-		super('Z', data);
+	constructor(canvas) {
+		super('Z', canvas);
 		this.color = '#f00';
 		this.blocks = [
-			new Block(data, 0, 0),
-			new Block(data, 1, 0),
-			new Block(data, 1, 1),
-			new Block(data, 2, 1),
+			new Block(canvas, 0, 0),
+			new Block(canvas, 1, 0),
+			new Block(canvas, 1, 1),
+			new Block(canvas, 2, 1),
 		];
 	}
 }

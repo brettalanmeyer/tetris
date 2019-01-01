@@ -1,22 +1,40 @@
 class Tetris {
   constructor() {
-    this.next = new Next();
-    this.level = new Level();
-    this.score = new Score();
-    this.lines = new Lines();
-    this.statistics = new Statistics();
-    this.gametype = new Gametype();
-    this.board = new Board(this.next);
+    this.canvas = document.getElementById('tetris');
+    this.ratio = 4 / 3;
+
+    this.gametype = new Gametype(this.canvas);
+    this.statistics = new Statistics(this.canvas);
+    this.lines = new Lines(this.canvas);
+    this.board = new Board(this.canvas, this.next);
+    this.score = new Score(this.canvas);
+    this.next = new Next(this.canvas);
+    this.level = new Level(this.canvas);
 
     this.isPaused = false;
-    this.isInDebugMode = false;
+    // this.isInDebugMode = false;
 
+    this.handleResize();
     this.addEvents();
     this.animate();
   }
 
   addEvents() {
     document.addEventListener('keydown', (e) => this.handleKeydown(e));
+    window.addEventListener('resize', () => this.handleResize());
+  }
+
+  handleResize() {
+    let width = window.innerHeight * this.ratio;
+    let height = window.innerHeight;
+
+  	if (width > window.innerWidth) {
+      width = window.innerWidth;
+      height = window.innerWidth / this.ratio;
+    }
+
+  	this.canvas.width = width;
+    this.canvas.height = height;
   }
 
   animate() {
@@ -24,13 +42,13 @@ class Tetris {
       window.requestAnimationFrame(() => this.animate());
     }
 
+    this.gametype.render();
+    this.statistics.render();
+    this.lines.render();
     this.board.render();
+    this.score.render();
     this.next.render();
     this.level.render();
-    this.score.render();
-    this.lines.render();
-    this.statistics.render();
-    this.gametype.render();
   }
 
   pause(){
@@ -101,6 +119,6 @@ class Tetris {
       case KEYS.Q:
         this.toggleDebugMode();
         break;
-      }
     }
+  }
 }

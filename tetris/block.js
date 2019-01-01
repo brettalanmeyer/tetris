@@ -1,9 +1,14 @@
 class Block {
-	constructor(data, x, y) {
-		this.canvas = data.canvas;
-		this.ctx = data.ctx;
-		this.columns = data.columns;
-		this.rows = data.rows;
+	constructor(canvas, x, y) {
+		this.canvas = canvas;
+		this.ctx = canvas.getContext('2d');
+		// this.columns = data.columns;
+		// this.rows = data.rows;
+
+
+		this.columns = 10;
+		this.rows = 20;
+
 		this.x = x;
 		this.y = y;
 		this.offsetX = 0;

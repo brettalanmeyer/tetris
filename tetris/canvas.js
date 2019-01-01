@@ -1,31 +1,26 @@
 class Canvas {
 
-  constructor(id) {
-    this.canvas = document.getElementById(id);
-    this.ctx = this.canvas.getContext('2d');
-    this.isInDebugMode = false;
-
-    this.data = {
-			canvas: this.canvas,
-			ctx: this.ctx,
-			columns: 10,
-			rows: 20,
-		}
-
-    this.resize();
-
-    window.addEventListener('resize', () => this.resize());
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
   }
 
-  resize() {
-    let canvas = document.getElementById(this.canvas.id);
-    this.canvas.width = canvas.scrollWidth;
-    this.canvas.height = canvas.scrollHeight;
-  }
+  offsetX() {}
+  offsetY() {}
+  width() {}
+  height() {}
 
   render() {
+    this.ctx.translate(this.offsetX(), this.offsetY());
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     this.update();
+
+    this.ctx.rect(0, 0, this.width(), this.height());
+    this.ctx.stroke();
+
+    this.ctx.translate(-this.offsetX(), -this.offsetY());
   }
 
   update() {
@@ -33,6 +28,10 @@ class Canvas {
   }
 
   draw() {}
+
+  font() {
+    return (this.width() / 12) + 'px PressStart2P';
+  }
 
   count(value, pad = 3) {
     return value.toString().padStart(pad, 0)
